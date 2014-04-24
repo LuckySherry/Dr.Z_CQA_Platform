@@ -1,0 +1,9 @@
+//
+   Created by Wang Xinyu on 2014/4/23.
+block content
+    h1.
+        User List
+    ul
+        each user, i in userlist
+            li
+                a(href="mailto:#{user.email}")= user.username
