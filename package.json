@@ -14,5 +14,5 @@
     "debug": "~0.7.4",
     "jade": "~1.3.0",
     "connect": "~2.14.4"
-  ,"mongodb": "*",    "monk": "*"}
+  ,"mongodb": "*",    "mongoskin": "*"}
 }

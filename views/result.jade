@@ -1,0 +1,126 @@
+//
+                     Created by Wang Xinyu on 2014/4/25.
+extends present
+block content
+    #page.clearfix
+        header#branding
+            hgroup#site-title
+                h1
+                    a(href='#') Dr.Z
+                h2#site-description A Community Question & Answering Platform
+            //
+               end site-title
+            img.headerimage(src='images/drznet1W.jpg', height='350', width='1102')
+            //
+               end headerimage
+            .clear
+            hgroup#query-title
+                h2 Result of
+                h1
+                    a= title
+            //
+               end site-title
+            nav#subnav
+            //
+               end subnav
+        //
+           end header
+        .copyrights
+            | Collect from
+            a(href='http://www.cssmoban.com/') Website Template
+        #wrap
+            #main
+                #content
+                    -each data in QAPair
+                        article.post
+                            .entry-details
+                                a(href=data.UserURL)
+                                    img.attachment-thumbnail.wp-post-image(src='#{data.UserPhoto}', height='100', width='100')
+                                p
+                                    br
+                                    | by #{data.UserName}
+                                    br
+                            //
+                               end entry-details
+                            header.entry-header
+                                h2.entry-title
+                                    a(href='#{data.QuestionURL}', rel='bookmark') #{data.QuestionText}
+                            //
+                               end entry-header
+                            .entry-content
+                                p= data.AnswerText
+
+                                footer.entry-meta
+                                    p
+                                        //
+                                          Categories: <a href="#"  rel="category tag">Category 1</a>, <a href="#"  rel="category tag">Sub Category 1</a> |
+                                        | Tags:
+                                        each topic in data.TopicArray
+                                            a(href=topic.TopicURL, rel='tag')= topic.TopicName + '|'
+                                        a(href=data.AnswerURL) Permalink
+                                //
+                                   end entry-meta
+                            //
+                               end entry-content
+                        //
+                           end post-#{data.AnswerURL}
+                //
+                   end content
+            //
+               end main
+            | --
+
+
+            #tertiary.widget-area(role='complementary')
+                //
+                              <aside id="text-7" class="widget widget_text">			<div class="textwidget"><a href="#" ><img src="images/wordpress-themes.jpg" class="banner"></a></div>
+                                  </aside>
+                //
+                    aside#search-3.widget.widget_search
+                        form.searchform(role='search', method='get', action='/result')
+                            div
+                                label.screen-reader-text(for='s')
+                                input#s.search-input(name='s', type='text')
+                                input.searchsubmit(value='Search', type='submit')
+                aside#get-related-user.widget.widget_get_related_user
+                    h3.widget-title Related Experts
+                    #get_related_user_wrap
+                        ul
+                            each user in RelatedUser
+                                li.sidebar-user
+                                    img.related_user_img(src=user.UserPhoto, height='30', width='30')
+                                    .comment-content
+                                        p
+                                            span.sidebar-comment-author
+                                                a(href=user.UserURL)= user.UserName
+                                            br
+                //
+                          <aside id="text-6" class="widget widget_text"><h3 class="widget-title">Flickr Pictures</h3>			<div class="textwidget"><div id="flickr_badge_wrapper">
+                              <script type="text/javascript" src="images/badge_code_v2.js">
+                              </script><div class="flickr_badge_image" id="flickr_badge_image1"><a href="#"><img src="images/7119927013_c02fa37153_t.jpg"   height="100" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image2"><a href="#"><img src="images/3828498700_4bccbffca3_t.jpg"   height="100" width="75"></a></div><div class="flickr_badge_image" id="flickr_badge_image3"><a href="#"><img src="images/7231715612_fed7e81446_t.jpg"   height="100" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image4"><a href="#"><img src="images/4071941586_8197dec0ba_t.jpg"   height="69" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image5"><a href="#"><img src="images/4298760995_139b5cd079_t.jpg"   height="73" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image6"><a href="#"><img src="images/4108516344_3f5a7eff39_t.jpg"   height="75" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image7"><a href="#"><img src="images/7046898709_709037ecb7_t.jpg"   height="75" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image8"><a href="#"><img src="images/7046903209_984120799e_t.jpg"   height="75" width="100"></a></div><div class="flickr_badge_image" id="flickr_badge_image9"><a href="#"><img src="images/4177235113_dfc96f7c01_t.jpg"   height="71" width="100"></a></div><span style="position:absolute;left:-999em;top:-999em;visibility:hidden" class="flickr_badge_beacon"><img src="images/p.gif"  height="0" width="0"></span><div class="clear"></div></div></div>
+                          </aside>
+                aside#linkcat-2.widget.widget_links
+                    h3.widget-title See Your Results in
+                    ul.other_links.widget_other_links
+                        li
+                            a(href='https://www.google.com/#newwindow=1&q=#{title}') Google
+                        li
+                            a(href='https://www.quora.com/search?q=#{title}') Quora
+                        li
+                            a(href='https://answers.yahoo.com/search/search_result;?fr=uh3_answers_vert_gs&type=2button&p=#{title}') Yahoo Answer
+                        li
+                            a(href='https://www.wolframalpha.com/input/?i=#{title}') WolframAlpha
+            //
+               end tertiary .widget-area
+        //
+           end wrap
+        footer#colophon.clearfix
+            p
+                | © Copyright © 2014 Dr.Z Network -
+                = 'Maintained by' + ' '
+                a(href='https://github.com/LuckySherry', target='_blank', title='Author') Xinyu Wang
+        //
+           end colophon
+        //
+           end page
+                  
